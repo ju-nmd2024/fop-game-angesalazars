@@ -2,18 +2,23 @@ function setup() {
   createCanvas(800, 600);
 }
 
+
 function draw() {
   background(0, 255, 255);
-  character(80, 200);
+  character(200, 120);
 }
 
-let x = 280;
-let y = 400;
+//variables position
+let characterX = 280;
+let characterY = 400;
 
 function character(x,y){
 
 // beard
 fill(255, 128, 0);
+push();
+translate(x, y);
+scale(0.5);
 noStroke();
 beginShape();
 vertex(x+5, y+200);
@@ -94,3 +99,40 @@ ellipse(x+80, y+30, 40, 30);
 pop();
 
 }
+
+/* THE GAME- CHARACTER DESCRIPTION
+- Irish Leprechaun 
+-Rainbow 
+-Goodies bucket to win 
+-Trash buckets to loose 
+
+SOME MECHANICS 
+-Tap the screen to make the character go up
+-Take gravity into account
+-End the game if arriving into trash instead of goodies bucket
+*/
+
+//This code was taken from master' students example from one of the lectures (flappy_ufo)
+
+//game logistics variable 
+let velocityY = 0.2;
+let acceleration = 0.2;
+
+// game state variable 
+let gameState = true;
+
+//gravity logic 
+characterY = characterY + velocityY;
+velocityY = velocityY + acceleration;
+
+//decrease the velocity when clicking
+if (mouseIsPressed){
+  velocityY = velocityY - 0.7;
+}
+
+// ends game when character touches the ground
+if (characterY > 180) {
+  gameState = false;
+  console.log('failed');
+}
+
