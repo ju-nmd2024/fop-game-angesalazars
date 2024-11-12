@@ -5,12 +5,44 @@ function setup() {
 
 function draw() {
   background(0, 255, 255);
-  character(200, 120);
+  rainbow(175, 260);
+  character(260, 120);
+  bowlLeprechaun(bowlX, bowlY);
 }
 
 //variables position
 let characterX = 280;
 let characterY = 400;
+
+//rainbow
+function rainbow(x, y) {
+  fill(255, 0, 0);
+  noStroke();
+  rect(180, 170, 440, 20);
+  fill(255, 160, 20);
+  rect(180, 190, 440,20);
+  fill(255, 255, 0);
+  rect(180, 210, 440,20);
+  fill(0, 255, 0);
+  rect(180, 230, 440,20);
+  fill(0, 0, 255);
+  rect(180, 250, 440,20);
+  fill(80, 0, 80);
+  rect(180, 270, 440,20);
+  fill(255,255,255);
+  ellipse(160, 180, 100, 100);
+  fill(255,255,255);
+  ellipse(160, 260, 100, 100);
+  fill(255,255,255);
+  ellipse(100, 220, 100, 100);
+  fill(255,255,255);
+  ellipse(620, 180, 100, 100);
+  fill(255,255,255);
+  ellipse(620, 260, 100, 100);
+  fill(255,255,255);
+  ellipse(680, 220, 100, 100);
+
+  }
 
 function character(x,y){
 
@@ -99,6 +131,48 @@ ellipse(x+80, y+30, 40, 30);
 pop();
 
 }
+
+
+
+//buckets
+let bowlX = -340;
+let bowlY = 700;
+let bowlX2 = 100;
+let bowlY2 = 300;
+
+function bowlLeprechaun(bowlX, bowlY) {
+  fill(0, 0, 0);
+  stroke(80, 80, 80);
+  strokeWeight(6);
+  rect(bowlX, bowlY, 400, 20);
+}
+ 
+bowlLeprechaun (-300, 700);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// fill(0, 0, 0);
+// rect(x-15, y-140, 40, 22);
+
 
 /* THE GAME- CHARACTER DESCRIPTION
 - Irish Leprechaun 
