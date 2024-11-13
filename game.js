@@ -1,13 +1,17 @@
+
+
 function setup() {
   createCanvas(800, 600);
 }
 
-
-function draw() {
+function draw(x,y) {
+  grass (x, y);
   background(0, 255, 255);
   rainbow(175, 260);
   character(260, 120);
   bowlLeprechaun(bowlX, bowlY);
+  bowlLeprechaun(bowlX+10, bowlY+20);
+  
 }
 
 //variables position
@@ -41,7 +45,6 @@ function rainbow(x, y) {
   ellipse(620, 260, 100, 100);
   fill(255,255,255);
   ellipse(680, 220, 100, 100);
-
   }
 
 function character(x,y){
@@ -132,7 +135,14 @@ pop();
 
 }
 
+//grass
+let grassX = 0;
+let grassY = 570; 
 
+function grass (x, y) {
+  fill(0, 255, 0);
+  rect(x, y, 800, 30);
+}
 
 //buckets
 let bowlX = -340;
@@ -144,10 +154,16 @@ function bowlLeprechaun(bowlX, bowlY) {
   fill(0, 0, 0);
   stroke(80, 80, 80);
   strokeWeight(6);
-  rect(bowlX, bowlY, 400, 20);
+  ellipse (-240, 800, 300, 300);
+  fill(0, 0, 0);
+  stroke(80, 80, 80);
+  strokeWeight(6);
+  rect(-420, 650, 350, 70);
 }
  
-bowlLeprechaun (-300, 700);
+bowlLeprechaun (-300, 700); {
+
+}
 
 
 
@@ -189,24 +205,24 @@ SOME MECHANICS
 //This code was taken from master' students example from one of the lectures (flappy_ufo)
 
 //game logistics variable 
-let velocityY = 0.2;
-let acceleration = 0.2;
+// let velocityY = 0.2;
+// let acceleration = 0.2;
 
-// game state variable 
-let gameState = true;
+// // game state variable 
+// let gameState = true;
 
-//gravity logic 
-characterY = characterY + velocityY;
-velocityY = velocityY + acceleration;
+// //gravity logic 
+// characterY = characterY + velocityY;
+// velocityY = velocityY + acceleration;
 
-//decrease the velocity when clicking
-if (mouseIsPressed){
-  velocityY = velocityY - 0.7;
-}
+// //decrease the velocity when clicking
+// if (mouseIsPressed){
+//   velocityY = velocityY - 0.7;
+// }
 
-// ends game when character touches the ground
-if (characterY > 180) {
-  gameState = false;
-  console.log('failed');
-}
+// // ends game when character touches the ground
+// if (characterY > 180) {
+//   gameState = false;
+//   console.log('failed');
+// }
 
