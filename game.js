@@ -4,48 +4,50 @@ function setup() {
   createCanvas(800, 600);
 }
 
-function draw(x,y) {
-  grass (x, y);
+function draw() {
   background(0, 255, 255);
   rainbow(175, 260);
   character(260, 120);
-  bowlLeprechaun(bowlX, bowlY);
-  bowlLeprechaun(bowlX+10, bowlY+20);
-  
-}
+  grass(grassX, grassY);
+  // bowlLeprechaun(bowlX, bowlY);
+  for (let i = 0; i < 3; i ++) {
+    bowlLeprechaun (i * 500, bowlY);
+  } 
 
-//variables position
-let characterX = 280;
-let characterY = 400;
+}
 
 //rainbow
 function rainbow(x, y) {
   fill(255, 0, 0);
   noStroke();
-  rect(180, 170, 440, 20);
+  rect(characterX-100, characterY-230, 440, 20);
   fill(255, 160, 20);
-  rect(180, 190, 440,20);
+  rect(characterX-100, characterY-210, 440,20);
   fill(255, 255, 0);
-  rect(180, 210, 440,20);
+  rect(characterX-100, characterY-190, 440,20);
   fill(0, 255, 0);
-  rect(180, 230, 440,20);
+  rect(characterX-100, characterY-170, 440,20);
   fill(0, 0, 255);
-  rect(180, 250, 440,20);
+  rect(characterX-100, characterY-150, 440,20);
   fill(80, 0, 80);
-  rect(180, 270, 440,20);
+  rect(characterX-100, characterY-130, 440,20);
   fill(255,255,255);
-  ellipse(160, 180, 100, 100);
+  ellipse(characterX-120, characterY-220, 100, 100);
   fill(255,255,255);
-  ellipse(160, 260, 100, 100);
+  ellipse(characterX-120, characterY-140, 100, 100);
   fill(255,255,255);
-  ellipse(100, 220, 100, 100);
+  ellipse(characterX-180, characterY-180, 100, 100);
   fill(255,255,255);
-  ellipse(620, 180, 100, 100);
+  ellipse(characterX+340, characterY-220, 100, 100);
   fill(255,255,255);
-  ellipse(620, 260, 100, 100);
+  ellipse(characterX+340, characterY-140, 100, 100);
   fill(255,255,255);
-  ellipse(680, 220, 100, 100);
+  ellipse(characterX+400, characterY-180, 100, 100);
   }
+
+//character 
+let characterX = 280;
+let characterY = 400;
 
 function character(x,y){
 
@@ -141,29 +143,26 @@ let grassY = 570;
 
 function grass (x, y) {
   fill(0, 255, 0);
-  rect(x, y, 800, 30);
+  rect(grassX-520, grassY+360, 1700, 30);
 }
 
 //buckets
 let bowlX = -340;
 let bowlY = 700;
-let bowlX2 = 100;
-let bowlY2 = 300;
 
-function bowlLeprechaun(bowlX, bowlY) {
+
+function bowlLeprechaun(x, y) {
   fill(0, 0, 0);
   stroke(80, 80, 80);
   strokeWeight(6);
-  ellipse (-240, 800, 300, 300);
+  ellipse (x-220, y+100, 300, 300);
   fill(0, 0, 0);
   stroke(80, 80, 80);
   strokeWeight(6);
-  rect(-420, 650, 350, 70);
+  rect(x-400, y-70, 350, 70);
+ 
 }
  
-bowlLeprechaun (-300, 700); {
-
-}
 
 
 
@@ -171,6 +170,7 @@ bowlLeprechaun (-300, 700); {
 
 
 
+  
 
 
 
