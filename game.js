@@ -4,19 +4,19 @@ let bowlX = -340;
 let bowlY = 400;
 let grassX = 0;
 let grassY = 570; 
-let characterX = 280;
+let characterX = 305;
 let characterY = 30;
 let velocityY = 0.2; 
 let acceleration = 0.1;
 let gameState = true; 
-
-
+// let state = "start";
+// let gameTimer = 0;
+ 
+ 
 function setup() {
   createCanvas(800, 600);
 }
 
-
-//character, background and elements 
 function rainbow(x, y) {
   fill(255, 0, 0);
   noStroke();
@@ -51,7 +51,7 @@ function character(x,y){
 fill(255, 128, 0);
 push();
 translate(x, y);
-scale(0.4);
+scale(0.3);
 noStroke();
 beginShape();
 vertex(x+5, y+200);
@@ -162,11 +162,90 @@ function bowlLeprechaun(x, y) {
   fill (105, 195, 100);
   textStyle(BOLD);
   textSize(20);
-  text("QUEEN", 365, 450, 100, 100);
+  text("$$$$$$", 365, 450, 100, 100);
+}
+
+ // Start sceen
+ function startScreen() {
+  background(25, 255, 70);
+  fill (255, 255, 255);
+  textStyle(BOLD);
+  textSize(50);
+  text("START GAME!", 240, 266);
+  textSize(20);
+  text("click the screen to start :)", 295, 350);
+
+ }    
+
+ //game screen
+ function gameScreen() {
+  background(0, 255, 255);
+  rainbow(175, 260);
+  character(characterX, characterY);
+  grass(0, 520);
+  for (let i = 0; i < 3; i++) {
+    bowlLeprechaun(i * 200, bowlY);
+}
+  
+ }
+
+ // win sreen
+ function winScreen() {
+  background(155, 40, 60);
+  fill (55, 255, 75);
+  textStyle(BOLD);
+  textSize(50);
+  text("RESULTS", 350, 266);
+  textSize(20);
+ if (state === "win") {
+  winScreen();
+ }
 }
 
 
- 
+//results screen
+//this code was fixed with the help of Liudmyla Petrus
+function resultScreen() {
+  background(255, 40, 60);
+  fill(55, 155, 55);
+  textStyle(BOLD);
+  textSize(50);
+  text("RESULTS", 300, 266);
+
+  if (characterX > 120 && characterX < 190) {
+    //loosing
+    console.log("GAME OVER");
+    textSize(40);
+    text("you lost!", 325, 322);
+    textSize(20);
+    text("click the screen to play again", 275, 550);
+  } else if (characterX > 280 && characterX < 330) {
+    //wining
+    console.log("LUCKY YOU, YOU WON!");
+    textSize(40);
+    text("LUCKY YOU, YOU WON!", 170, 322);
+    textSize(20);
+    text("click the screen to play again", 275, 550);
+  } else if (characterX > 454 && characterX < 500) {
+    //loosing
+    console.log("GAME OVER");
+    textSize(40);
+    text("you lost!", 325, 322);
+    textSize(20);
+    text("click the screen to play again", 275, 550);
+  } else {
+    //if you fall between the buckets
+    console.log("GAME OVER");
+    textSize(40);
+    text("DAMN, YOU GOT BAD PULSE!!", 130, 322);
+    textSize(20);
+    text("click the screen to play again", 275, 550);
+  }
+}
+
+let state = "start";
+let gameTimer = 0;
+
 /* THE GAME- CHARACTER DESCRIPTION
 - Irish Leprechaun 
 -Rainbow 
@@ -189,29 +268,67 @@ function mechanichs() {
 character(characterX, characterY);
 //game state
 if(gameState === true) {
-
-   //gravity logic
+  velocityY=4;
+  acceleration=5;
+  
+//gravity logic
 characterY = characterY + velocityY;
 velocityY = velocityY + acceleration;
-}
-//decrease the velocity when clicking
-if (mouseIsPressed) {
-  velocityY = velocityY - 0.7;                                          
+}  
+
+// the use of arrows 
+if (keyIsDown(UP_ARROW)) {
+  velocityY = -100; 
 } 
-
-if (characterY >200) {
-  gameState = false;
+if (keyIsDown(LEFT_ARROW)) {
+  characterX = characterX -10;
+}                           
+if (keyIsDown(RIGHT_ARROW)) {
+  characterX = characterX + 10;
 }
 
+ 
+    
 }
  
 function draw() {
   background(0, 255, 255);         
   rainbow(175, 260);    
   grass(0, 520); 
-  for (let i = 0; i < 3; i ++) {
-    bowlLeprechaun (i * 200, bowlY);
-  } 
-  mechanichs (); 
+  for (let i = 0; i < 3; i++) {
+    bowlLeprechaun(i * 200, bowlY);
 }
+  if (state === "start") {
+    startScreen();
+  } else if (state === "game") {
+  mechanichs ();
+    gameScreen();
+    gameTimer = gameTimer + 1;
+    if (gameTimer >= 100) {
+      gameTimer = 0;
+      state = "result";
+    }
+  } else if (state === "result") {
+    resultScreen();
+  }
+  if (state === "win") {
+    winScreen();
+}
+}
+  
+ 
+     //change beetween screens while clicking 
+     function mouseClicked() {
+      if (state === "start") {
+        //if statement
+        state = "game";
+      } else if (state === "result") {
+        state = "start";
+      }
+      if(state==="start"){
+        characterX=300;
+        characterY=20;
+      }
+     }
 
+    
