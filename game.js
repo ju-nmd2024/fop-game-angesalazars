@@ -5,9 +5,9 @@ let bowlY = 400;
 let grassX = 0;
 let grassY = 570; 
 let characterX = 305;
-let characterY = 30;
-let velocityY = 0.2; 
-let acceleration = 0.1;
+let characterY = 20;
+let velocityY = 0; 
+let acceleration = 0.2;
 let gameState = true; 
 
  
@@ -133,10 +133,11 @@ pop();
 }
 
 function grass (x, y) {
-  fill(0, 255, 0);
+  fill(100, 155, 20);
   rect(x, y+50, 1700, 30);
 }
 
+// made this one into a loop in draw to triplicate it
 function bowlLeprechaun(x, y) {
   fill(0, 0, 0);
   stroke(80, 80, 80);
@@ -176,7 +177,7 @@ function bowlLeprechaun(x, y) {
 
  }    
 
- //game screen
+ //game screen, all the functions that are supposed to be on the game 
  function gameScreen() {
   background(0, 255, 255);
   rainbow(175, 260);
@@ -209,7 +210,7 @@ function resultScreen() {
     //wining
     console.log("LUCKY YOU, YOU WON!");
     textSize(40);
-    text("LUCKY YOU, YOU WON!", 170, 322);
+    text("LUCKY YOU, YOU WON!", 185, 322);
     textSize(20);
     text("click the screen to play again", 275, 550);
   } else if (characterX > 454 && characterX < 500) {
@@ -262,10 +263,14 @@ characterY = characterY + velocityY;
 velocityY = velocityY + acceleration;
 }  
 
-// the use of arrows 
 if (keyIsDown(UP_ARROW)) {
-  velocityY = -100; 
-} 
+  characterY -= acceleration * 2;
+}
+
+// the use of arrows in keyboard 
+// if (keyIsDown(UP_ARROW)) {
+//  velocityY = -100; 
+//  } 
 if (keyIsDown(LEFT_ARROW)) {
   characterX = characterX -10;
 }                           
@@ -290,7 +295,7 @@ function draw() {
   mechanichs ();
     gameScreen();
     gameTimer = gameTimer + 1;
-    if (gameTimer >= 100) {
+    if (gameTimer >= 250) {
       gameTimer = 0;
       state = "result";
     }
