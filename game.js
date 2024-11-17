@@ -260,26 +260,21 @@ if(gameState === true) {
   
 //gravity logic
 characterY = characterY + velocityY;
-velocityY = velocityY + acceleration;
+velocityY = velocityY * acceleration;
 }  
 
+// got this code with the help of Ariadna Alfonso
 if (keyIsDown(UP_ARROW)) {
   characterY -= acceleration * 2;
 }
 
-// the use of arrows in keyboard 
-// if (keyIsDown(UP_ARROW)) {
-//  velocityY = -100; 
-//  } 
 if (keyIsDown(LEFT_ARROW)) {
   characterX = characterX -10;
 }                           
 if (keyIsDown(RIGHT_ARROW)) {
   characterX = characterX + 10;
 }
-
- 
-    
+   
 }
  
 function draw() {
@@ -302,9 +297,6 @@ function draw() {
   } else if (state === "result") {
     resultScreen();
   }
-  if (state === "win") {
-    winScreen();
-}
 }
   
  
