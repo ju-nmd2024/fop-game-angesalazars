@@ -9,8 +9,7 @@ let characterY = 30;
 let velocityY = 0.2; 
 let acceleration = 0.1;
 let gameState = true; 
-// let state = "start";
-// let gameTimer = 0;
+
  
  
 function setup() {
@@ -188,19 +187,6 @@ function bowlLeprechaun(x, y) {
 }
   
  }
-
- // win sreen
- function winScreen() {
-  background(155, 40, 60);
-  fill (55, 255, 75);
-  textStyle(BOLD);
-  textSize(50);
-  text("RESULTS", 350, 266);
-  textSize(20);
- if (state === "win") {
-  winScreen();
- }
-}
 
 
 //results screen
