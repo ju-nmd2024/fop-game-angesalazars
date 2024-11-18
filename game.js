@@ -208,6 +208,8 @@ function resultScreen() {
     text("click the screen to play again", 275, 550);
   } else if (characterX > 280 && characterX < 330) {
     //wining
+    background(255,182,163);
+    text("RESULTS", 300, 266);
     console.log("LUCKY YOU, YOU WON!");
     textSize(40);
     text("LUCKY YOU, YOU WON!", 185, 322);
@@ -290,7 +292,7 @@ function draw() {
   mechanichs ();
     gameScreen();
     gameTimer = gameTimer + 1;
-    if (gameTimer >= 250) {
+    if (gameTimer >= 180) {
       gameTimer = 0;
       state = "result";
     }
