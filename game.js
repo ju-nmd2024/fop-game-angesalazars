@@ -4,13 +4,12 @@ let bowlX = -340;
 let bowlY = 400;
 let grassX = 0;
 let grassY = 570; 
-let characterX = 300;
-let characterY = 20;
-let velocityY = 0.5; 
-let boostVelocity = 1;
-let acceleration = 3;
-let gameState = true; 
-
+let characterX = 100;
+let characterY = 0;
+let velocityY = 0.8; 
+let boostVelocity = 0.7;
+let acceleration = 0.8;
+let gameState = true;  
  
  
 function setup() {
@@ -259,7 +258,7 @@ character(characterX, characterY);
 //game state
 if(gameState === true) {
   // velocityY=2;
-  acceleration=0.5;
+  acceleration=0.2;
   
 //gravity logic
 characterY = characterY + velocityY;
@@ -282,6 +281,33 @@ if (keyIsDown(RIGHT_ARROW)) {
 }
    
 }
+
+function resetGame() {
+  state= "game";
+  characterX = 100;
+  characterY = 0;
+  velocityY = 0.8;
+}
+// function resetGame() {
+//   characterX = 100;
+//   characterY = 20;
+
+//   velocityY= 0.8;
+//   acceleration= 0.8;
+// //reestablecer el temporizador y estado del juego
+// gameTimer = 0;
+// gameState= true;
+
+// }
+// function mouseClicked() {
+//   if (state === "start") {
+//     state = "game";
+//     resetGame();
+//   } else if (state === "result") {
+//     state = "start";
+//     resetGame();
+//   }
+// }
  
 function draw() {
   background(0, 255, 255);         
@@ -292,11 +318,12 @@ function draw() {
 }
   if (state === "start") {
     startScreen();
+    resetGame();
   } else if (state === "game") {
   mechanichs ();
     gameScreen();
     gameTimer = gameTimer + 1;
-    if (gameTimer >= 300) {
+    if (gameTimer >= 200) {
       gameTimer = 0;
       state = "result";
     }
@@ -315,7 +342,7 @@ function draw() {
         state = "start";
       }
       if(state==="start"){
-        characterX=300;
+        characterX=100;
         characterY=20;
       }
      }
