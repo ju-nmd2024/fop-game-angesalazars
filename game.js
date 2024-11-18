@@ -4,10 +4,11 @@ let bowlX = -340;
 let bowlY = 400;
 let grassX = 0;
 let grassY = 570; 
-let characterX = 305;
+let characterX = 300;
 let characterY = 20;
-let velocityY = 0; 
-let acceleration = 0.2;
+let velocityY = 0.5; 
+let boostVelocity = 1;
+let acceleration = 3;
 let gameState = true; 
 
  
@@ -257,17 +258,20 @@ function mechanichs() {
 character(characterX, characterY);
 //game state
 if(gameState === true) {
-  velocityY=4;
-  acceleration=5;
+  // velocityY=2;
+  acceleration=0.5;
   
 //gravity logic
 characterY = characterY + velocityY;
-velocityY = velocityY * acceleration;
-}  
+velocityY = velocityY + acceleration;
+}   
 
-// got this code with the help of Ariadna Alfonso
+
+
+// bouncing effect
 if (keyIsDown(UP_ARROW)) {
-  characterY -= acceleration * 2;
+  // characterY -= boostVelocity;
+  velocityY -= boostVelocity;
 }
 
 if (keyIsDown(LEFT_ARROW)) {
@@ -292,7 +296,7 @@ function draw() {
   mechanichs ();
     gameScreen();
     gameTimer = gameTimer + 1;
-    if (gameTimer >= 180) {
+    if (gameTimer >= 300) {
       gameTimer = 0;
       state = "result";
     }
