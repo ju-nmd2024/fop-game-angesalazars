@@ -288,26 +288,7 @@ function resetGame() {
   characterY = 0;
   velocityY = 0.8;
 }
-// function resetGame() {
-//   characterX = 100;
-//   characterY = 20;
 
-//   velocityY= 0.8;
-//   acceleration= 0.8;
-// //reestablecer el temporizador y estado del juego
-// gameTimer = 0;
-// gameState= true;
-
-// }
-// function mouseClicked() {
-//   if (state === "start") {
-//     state = "game";
-//     resetGame();
-//   } else if (state === "result") {
-//     state = "start";
-//     resetGame();
-//   }
-// }
  
 function draw() {
   background(0, 255, 255);         
@@ -336,7 +317,6 @@ function draw() {
      //change beetween screens while clicking 
      function mouseClicked() {
       if (state === "start") {
-        //if statement
         state = "game";
       } else if (state === "result") {
         state = "start";
