@@ -5,7 +5,7 @@ let bowlY = 400;
 let grassX = 0;
 let grassY = 570; 
 let characterX = 100;
-let characterY = 0;
+let characterY = 30;
 let velocityY = 0.8; 
 let boostVelocity = 0.7;
 let acceleration = 0.8;
@@ -239,18 +239,22 @@ let gameTimer = 0;
 
 /* THE GAME- CHARACTER DESCRIPTION
 - Irish Leprechaun 
--Rainbow 
--money bucket to win 
--'x' buckets to loose 
+- Rainbow for the background
+- Money bucket to win 
+-'X' buckets to loose 
+- Ground touching to loose
 
 SOME MECHANICS 
--Tap the screen to make the character go up
--Take gravity into account
--End the game if arriving into trash instead of goodies bucket
--win if ending in money
+- Using the click button, you tap the screen to start the game and make the character move
+- Take gravity into account
+- Use "arrows" buttons to control the direction and make the character slow down if needed for not hitting the ground with a high velocity
+- Loosing when arriving into "X" buckets or touching ground
+- Winning when landing into "money" bucket
+- There are three screens (Start/Game/Results)
+- You are able to re- start the game at the end if wanted
 */
 
-//This code was taken from master' students example from one of the lectures (flappy_ufo)
+//Some codes were taken from master' students example from one of the lectures (flappy_ufo) but must of it was modified in order to work in my game
 
 //make it fly
 
