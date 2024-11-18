@@ -14,6 +14,8 @@ let gameState = true;
  
 function setup() {
   createCanvas(800, 600);
+  //FPS frame per second, que tan smooth se mueve
+  frameRate(30);
 }
 
 function rainbow(x, y) {
