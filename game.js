@@ -11,7 +11,7 @@ let boostVelocity = 0.7;
 let acceleration = 0.2;
 let gameState = true;  
 let state = "start";
-let result = "win";
+let result = "none";
  
  
 function setup() {
@@ -307,6 +307,7 @@ function resetGame() {
   characterY = 0;
   velocityY = 0.8;
   gameState= true;
+  result = "none";
 }
 
  
