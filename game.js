@@ -8,13 +8,15 @@ let characterX = 100;
 let characterY = 30;
 let velocityY = 0.8; 
 let boostVelocity = 0.7;
-let acceleration = 0.8;
+let acceleration = 0.2;
 let gameState = true;  
+let state = "start";
+let gameTimer = 0;
  
  
 function setup() {
   createCanvas(800, 600);
-  //FPS frame per second, que tan smooth se mueve
+  //FPS frame per second, to make it smoother online
   frameRate(30);
 }
 
@@ -185,6 +187,7 @@ function bowlLeprechaun(x, y) {
   rainbow(175, 260);
   character(characterX, characterY);
   grass(0, 520);
+  //
   for (let i = 0; i < 3; i++) {
     bowlLeprechaun(i * 200, bowlY);
 }
@@ -234,15 +237,14 @@ function resultScreen() {
   }
 }
 
-let state = "start";
-let gameTimer = 0;
+
 
 /* THE GAME- CHARACTER DESCRIPTION
 - Irish Leprechaun 
 - Rainbow for the background
 - Money bucket to win 
--'X' buckets to loose 
-- Ground touching to loose
+-'X' buckets to lose 
+- Ground touching to lose
 
 SOME MECHANICS 
 - Using the click button, you tap the screen to start the game and make the character move
@@ -258,24 +260,19 @@ SOME MECHANICS
 
 //make it fly
 
-function mechanichs() {
-// character
+function mechanics() {
+// character coordinates
 character(characterX, characterY);
-//game state
+//game state and gravity logic, to determinate free falling 
 if(gameState === true) {
-  // velocityY=2;
   acceleration=0.2;
-  
-//gravity logic
 characterY = characterY + velocityY;
+//acceleration to prevent a linear speed and generate gravity 
 velocityY = velocityY + acceleration;
 }   
 
-
-
-// bouncing effect
-if (keyIsDown(UP_ARROW)) {
-  // characterY -= boostVelocity;
+// bouncing effect with Garrit;s help and modification 
+if (keyIsDown(32)) {
   velocityY -= boostVelocity;
 }
 
@@ -289,7 +286,6 @@ if (keyIsDown(RIGHT_ARROW)) {
 }
 
 function resetGame() {
-  state= "game";
   characterX = 100;
   characterY = 0;
   velocityY = 0.8;
@@ -307,7 +303,7 @@ function draw() {
     startScreen();
     resetGame();
   } else if (state === "game") {
-  mechanichs ();
+  mechanics ();
     gameScreen();
     gameTimer = gameTimer + 1;
     if (gameTimer >= 200) {
