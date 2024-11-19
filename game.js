@@ -11,7 +11,7 @@ let boostVelocity = 0.7;
 let acceleration = 0.2;
 let gameState = true;  
 let state = "start";
-let gameTimer = 0;
+let result = "win";
  
  
 function setup() {
@@ -203,39 +203,31 @@ function resultScreen() {
   textStyle(BOLD);
   textSize(50);
   text("RESULTS", 300, 266);
-
-  if (characterX > 120 && characterX < 190) {
-    //loosing
-    console.log("GAME OVER");
-    textSize(40);
-    text("you lost!", 325, 322);
-    textSize(20);
-    text("click the screen to play again", 275, 550);
-  } else if (characterX > 280 && characterX < 330) {
-    //wining
-    background(255,182,163);
+if (result === "win" ) {
+  background(255,182,163);
     text("RESULTS", 300, 266);
-    console.log("LUCKY YOU, YOU WON!");
     textSize(40);
     text("LUCKY YOU, YOU WON!", 185, 322);
     textSize(20);
     text("click the screen to play again", 275, 550);
-  } else if (characterX > 454 && characterX < 500) {
-    //loosing
-    console.log("GAME OVER");
-    textSize(40);
-    text("you lost!", 325, 322);
-    textSize(20);
-    text("click the screen to play again", 275, 550);
-  } else {
+} else if (result === "loseInBowl") 
+  {
+  //loosing
+  
+  textSize(40);
+  text("you lost!", 325, 322);
+  textSize(20);
+  text("click the screen to play again", 275, 550);
+  
+   } else  if (result === "loseInGround") {
     //if you fall between the buckets
-    console.log("GAME OVER");
+   
     textSize(40);
     text("DAMN, YOU GOT BAD PULSE!!", 130, 322);
     textSize(20);
     text("click the screen to play again", 275, 550);
   }
-}
+ }
 
 
 
@@ -282,13 +274,39 @@ if (keyIsDown(LEFT_ARROW)) {
 if (keyIsDown(RIGHT_ARROW)) {
   characterX = characterX + 10;
 }
-   
+
+// doesnt keep going
+if (characterY> 470) {
+  // console.log (velocityY);
+
+  //slow down to win
+  if (characterX > 280 && characterX < 330 ) {
+    if (velocityY < 10) {
+    
+    result = "win";
+  
+  } 
+}
+  else if ( characterX > 280 && characterX < 330 ) {
+    result = "loseInBowl";
+    
+}
+else if ( characterX > 120 && characterX < 190) {
+  result = "loseInBowl";
+  
+} else{ 
+  result = "loseInGround";}
+gameState = false;
+state= "result";
+
+}
 }
 
 function resetGame() {
   characterX = 100;
   characterY = 0;
   velocityY = 0.8;
+  gameState= true;
 }
 
  
@@ -301,15 +319,10 @@ function draw() {
 }
   if (state === "start") {
     startScreen();
-    resetGame();
+    resetGame(); 
   } else if (state === "game") {
   mechanics ();
     gameScreen();
-    gameTimer = gameTimer + 1;
-    if (gameTimer >= 200) {
-      gameTimer = 0;
-      state = "result";
-    }
   } else if (state === "result") {
     resultScreen();
   }
